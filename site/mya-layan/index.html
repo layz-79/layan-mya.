@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8 Mois • Mya & Layan (16/03/26)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Poppins:wght@300;400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Lien vers le fichier CSS externe -->
+    <link rel="stylesheet" href="style.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'Georgia', 'serif'],
+                        sans: ['"Poppins"', 'sans-serif'],
+                        soft: ['"Quicksand"', 'sans-serif'],
+                    },
+                    colors: {
+                        cream: { 50: '#FFFDFB', 100: '#FDF7F4', 200: '#F9ECE6' },
+                        poudre: { 100: '#FCECEF', 200: '#F8D5DC', 300: '#F2B5C2', 400: '#E88DA1', 500: '#DC6680' },
+                        bordeaux: { 600: '#8E2443', 700: '#721933', 800: '#561025', 900: '#3D0A19' },
+                        gold: { 300: '#EED39B', 400: '#DFB86B', 500: '#C89B42', 600: '#A67C29' }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-cream-100 text-bordeaux-900 font-sans antialiased min-h-screen relative overflow-x-hidden selection:bg-poudre-200 selection:text-bordeaux-900">
+
+    <!-- Conteneur particules décoratives -->
+    <div id="particles-layer" aria-hidden="true"></div>
+
+    <!-- Fond halo doux -->
+    <div class="fixed inset-0 pointer-events-none -z-10 overflow-hidden">
+        <div class="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-poudre-200/50 blur-3xl"></div>
+        <div class="absolute top-1/2 -right-24 w-96 h-96 rounded-full bg-gold-300/30 blur-3xl"></div>
+        <div class="absolute -bottom-24 left-1/3 w-80 h-80 rounded-full bg-poudre-300/30 blur-3xl"></div>
+    </div>
+
+    <!-- Barre flottante globale -->
+    <div id="global-topbar" class="hidden sticky top-0 z-30 bg-cream-50/85 backdrop-blur-md border-b border-poudre-200/70 px-4 py-2.5">
+        <div class="max-w-5xl mx-auto flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <button id="home-btn" onclick="navigateTo('hub')" class="hidden inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-poudre-100 hover:bg-poudre-200 text-bordeaux-700 font-medium text-xs sm:text-sm transition-all shadow-2xs cursor-pointer">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                    <span>Accueil</span>
+                </button>
+                <span id="topbar-title" class="font-serif italic text-bordeaux-700 text-sm sm:text-base font-semibold">Mya & Layan • 8 Mois</span>
+            </div>
+
+            <div class="flex items-center gap-2 sm:gap-3">
+                <button onclick="navigateTo('cipher')" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-r from-bordeaux-700 to-bordeaux-600 text-cream-50 text-xs font-medium shadow-xs hover:opacity-95 transition-all cursor-pointer">
+                    <span>❤️</span>
+                    <span id="topbar-progress">0/8 défis</span>
+                </button>
+                <button id="music-toggle-btn" onclick="toggleAudio()" class="w-9 h-9 rounded-full bg-poudre-100 border border-poudre-300 text-bordeaux-700 flex items-center justify-center hover:bg-poudre-200 transition-colors cursor-pointer" title="Activer/Couper la musique">
+                    <span id="music-icon">🎵</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ÉCRAN 1 : VERROUILLAGE -->
+    <section id="screen-lock" class="min-h-screen flex items-center justify-center p-4">
+        <div id="lock-card" class="max-w-md w-full bg-cream-50/95 backdrop-blur-md rounded-[2rem] p-8 sm:p-10 shadow-[0_20px_50px_-15px_rgba(114,25,51,0.2)] border border-gold-300/60 text-center">
+            <div class="relative w-24 h-24 mx-auto mb-6 flex items-center justify-center">
+                <svg class="w-24 h-24 text-bordeaux-600 drop-shadow-md" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+                <svg class="w-8 h-8 text-gold-300 absolute" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                </svg>
+            </div>
+
+            <span class="text-xs uppercase tracking-[0.2em] text-gold-600 font-semibold">Accès Privé • Mya</span>
+            <h1 class="font-serif text-3xl font-bold text-bordeaux-800 mt-1 mb-2">Notre Petit Secret</h1>
+            <p class="font-soft text-sm text-bordeaux-700/80 mb-6">Entre la date qui a tout changé pour déverrouiller ton espace…</p>
+
+            <form onsubmit="checkPassword(event)" class="space-y-4">
+                <div>
+                    <input type="text" id="password-input" placeholder="JJ/MM/AA" autocomplete="off"
+                        class="w-full text-center tracking-[0.25em] font-semibold text-lg py-3.5 px-4 rounded-2xl bg-poudre-100/70 border-2 border-poudre-300 text-bordeaux-900 placeholder-bordeaux-700/40 focus:outline-none focus:border-bordeaux-600 focus:bg-white transition-all">
+                    <p id="password-error" class="text-xs text-red-600 mt-2 hidden font-medium">
+                        Ce n'est pas la bonne date mon cœur… Indice : le jour où tout a commencé (JJ/MM/AA) ❤️
+                    </p>
+                </div>
+                <button type="submit" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-bordeaux-700 via-bordeaux-600 to-poudre-500 text-white font-semibold tracking-wide shadow-lg hover:shadow-xl hover:opacity-95 active:scale-[0.98] transition-all cursor-pointer">
+                    Déverrouiller ✨
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- ÉCRAN 2 : SPOTIFY -->
+    <section id="screen-spotify" class="hidden min-h-screen flex items-center justify-center p-4 bg-gradient-to-b from-bordeaux-900 via-[#2b0914] to-neutral-950 text-white">
+        <div class="max-w-sm w-full bg-white/10 backdrop-blur-xl rounded-[2rem] p-6 sm:p-8 border border-white/15 shadow-2xl">
+            <div class="flex items-center justify-between text-xs text-poudre-200/80 mb-5">
+                <span class="uppercase tracking-widest font-medium">En lecture pour toi</span>
+                <span>•••</span>
+            </div>
+            <div class="relative aspect-square w-full rounded-2xl overflow-hidden shadow-2xl mb-6 bg-gradient-to-br from-poudre-400 via-bordeaux-600 to-bordeaux-900 flex flex-col items-center justify-center p-6 text-center border border-gold-300/30">
+                <div class="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_top_right,_#EED39B,_transparent_60%)]"></div>
+                <span class="text-5xl mb-3 drop-shadow">❤️</span>
+                <h2 class="font-serif text-2xl sm:text-3xl font-bold text-cream-50 tracking-tight">8 Mois</h2>
+                <p class="font-serif italic text-gold-300 text-base mt-1">Mya & Layan</p>
+                <span class="mt-4 px-3 py-1 rounded-full bg-black/30 text-[11px] tracking-widest uppercase text-poudre-100 border border-white/10">16/03/26 — 16/11/26</span>
+            </div>
+            <div class="flex items-center justify-between mb-4">
+                <div>
+                    <h3 class="font-bold text-lg text-white leading-tight">Notre Histoire (8 Mois)</h3>
+                    <p class="text-sm text-poudre-200">Layan • Pour Mya ❤️</p>
+                </div>
+                <span class="text-poudre-400 text-2xl">♥</span>
+            </div>
+            <div class="mb-6">
+                <div class="w-full h-1.5 bg-white/20 rounded-full overflow-hidden">
+                    <div id="spotify-bar" class="h-full bg-gradient-to-r from-poudre-400 to-gold-400 w-1/4 transition-all duration-1000"></div>
+                </div>
+                <div class="flex justify-between text-[11px] text-white/60 mt-1.5 font-mono">
+                    <span id="spotify-time">0:00</span>
+                    <span>∞:∞</span>
+                </div>
+            </div>
+            <div class="flex items-center justify-center gap-6">
+                <button class="text-white/60 hover:text-white transition-colors" aria-label="Précédent"><svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg></button>
+                <button id="spotify-play-btn" onclick="startExperienceFromSpotify()" class="w-16 h-16 rounded-full bg-gradient-to-tr from-poudre-500 to-poudre-400 hover:scale-105 active:scale-95 text-white flex items-center justify-center shadow-[0_0_30px_rgba(220,102,128,0.6)] transition-all cursor-pointer" aria-label="Lancer"><svg class="w-8 h-8 fill-current ml-1" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+                <button class="text-white/60 hover:text-white transition-colors" aria-label="Suivant"><svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg></button>
+            </div>
+            <p class="text-center text-xs text-poudre-200/75 mt-5 animate-pulse">Appuie sur Play pour lancer le son et commencer ✨</p>
+        </div>
+    </section>
+
+    <!-- ÉCRAN 3 : INTRO -->
+    <section id="screen-intro" class="hidden min-h-screen flex flex-col justify-between p-5 sm:p-10 max-w-3xl mx-auto">
+        <div class="my-auto bg-cream-50/95 backdrop-blur-md rounded-[2rem] p-7 sm:p-12 shadow-[0_15px_45px_-15px_rgba(114,25,51,0.18)] border border-gold-300/60 relative">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-poudre-100 text-bordeaux-700 text-xs font-semibold tracking-wider uppercase mb-5">
+                <span>16 Mars 2026 — 16 Novembre 2026</span>
+            </div>
+            <h1 class="font-serif text-3xl sm:text-4xl font-bold text-bordeaux-800 leading-tight mb-5">Bienvenue dans ton petit univers, mon cœur…</h1>
+            <div class="font-soft text-bordeaux-900/90 text-base sm:text-lg leading-relaxed space-y-4">
+                <p>Aujourd’hui, cela fait <strong>8 mois</strong> que nous écrivons notre histoire ensemble. Pour fêter ça à ma manière, je t’ai préparé une petite aventure remplie de souvenirs et de clins d’œil à nous deux.</p>
+                <p>Une <strong>surprise finale</strong> t’attend tout au bout… Mais pour pouvoir la débloquer, tu vas devoir relever <strong>8 petits défis et mini-jeux</strong> !</p>
+                <p>À chaque défi réussi, tu gagneras une série de <strong>numéros secrets</strong> qui viendront se ranger dans le <em>Cadenas Cœur</em>.</p>
+                <p class="font-serif italic text-bordeaux-700 text-lg pt-2">Prête à relever le défi ? Appuie sur le cœur rouge en bas à droite… ❤️</p>
+            </div>
+        </div>
+        <div class="flex justify-end pt-6 pb-2">
+            <button onclick="navigateTo('hub')" class="group relative flex items-center gap-3 focus:outline-none cursor-pointer" title="Accéder">
+                <span class="text-sm font-semibold text-bordeaux-700 bg-cream-50/90 px-3.5 py-1.5 rounded-full shadow-xs border border-poudre-200 group-hover:bg-poudre-100 transition-colors">C'est parti !</span>
+                <div class="relative w-16 h-16 flex items-center justify-center animate-heart-pulse">
+                    <svg class="w-16 h-16 text-red-600 drop-shadow-lg group-hover:text-red-500 transition-colors" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                    <svg class="w-6 h-6 text-white absolute" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+                </div>
+            </button>
+        </div>
+    </section>
+
+    <!-- ÉCRAN 4 : HUB -->
+    <section id="screen-hub" class="hidden max-w-5xl mx-auto px-4 sm:px-6 py-8 pb-20 space-y-10">
+        <div class="bg-gradient-to-r from-bordeaux-800 via-bordeaux-700 to-bordeaux-800 text-cream-50 rounded-[2rem] p-6 sm:p-8 shadow-xl border border-gold-400/40 relative overflow-hidden">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center gap-4 text-center md:text-left flex-col sm:flex-row">
+                    <button onclick="navigateTo('cipher')" class="relative w-20 h-20 shrink-0 flex items-center justify-center group cursor-pointer" title="Ouvrir">
+                        <svg class="w-20 h-20 text-poudre-400 group-hover:scale-105 transition-transform drop-shadow-md" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                        <svg class="w-7 h-7 text-bordeaux-900 absolute" fill="none" stroke="currentColor" stroke-width="2.3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                    </button>
+                    <div>
+                        <span class="text-xs uppercase tracking-widest text-gold-300 font-semibold">Ton Coffre Secret</span>
+                        <h2 class="font-serif text-2xl sm:text-3xl font-bold mt-0.5">Cadenas en forme de Cœur</h2>
+                        <p class="text-xs sm:text-sm text-poudre-100/90 mt-1">Numéros débloqués : <strong id="hub-unlocked-count" class="text-gold-300">0</strong> / <span id="hub-total-letters">101</span> lettres • Défis : <strong id="hub-games-done" class="text-gold-300">0/8</strong></p>
+                    </div>
+                </div>
+                <button onclick="navigateTo('cipher')" class="px-6 py-3 rounded-2xl bg-gradient-to-r from-gold-400 to-gold-500 text-bordeaux-900 font-bold text-sm shadow-lg hover:brightness-105 active:scale-95 transition-all shrink-0 cursor-pointer">Ouvrir le Cadenas & Déchiffrer 🔐</button>
+            </div>
+            <div class="mt-5 pt-4 border-t border-white/15">
+                <p class="text-[11px] uppercase tracking-wider text-poudre-200/80 mb-2">Aperçu de tes numéros gagnés :</p>
+                <div id="hub-numbers-preview" class="flex flex-wrap gap-1.5 max-h-24 overflow-y-auto pr-1 text-xs font-mono"></div>
+            </div>
+        </div>
+
+        <div>
+            <div class="text-center mb-6">
+                <span class="text-xs uppercase tracking-widest text-gold-600 font-semibold">Les 8 Défis de Notre Histoire</span>
+                <h2 class="font-serif text-3xl font-bold text-bordeaux-800 mt-1">Choisis ton Mini-Jeu</h2>
+            </div>
+            <div id="games-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"></div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 pt-4">
+            <div class="bg-cream-50/95 rounded-[2rem] p-6 shadow-md border border-poudre-200 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-2.5">
+                            <div class="w-10 h-10 rounded-full bg-bordeaux-700 text-gold-300 flex items-center justify-center text-lg shadow-xs">🎧</div>
+                            <div>
+                                <h3 class="font-serif text-xl font-bold text-bordeaux-800">Coin Playlist</h3>
+                                <p class="text-xs text-bordeaux-700/70">Les sons que tu aimes & nos musiques</p>
+                            </div>
+                        </div>
+                        <button onclick="openPlaylistModal()" class="px-3 py-1.5 rounded-full bg-poudre-100 hover:bg-poudre-200 text-bordeaux-700 text-xs font-semibold transition-colors cursor-pointer">+ Ajouter</button>
+                    </div>
+                    <div id="playlist-list" class="space-y-2.5 max-h-72 overflow-y-auto pr-1"></div>
+                </div>
+                <div class="mt-4 pt-3 border-t border-poudre-200/70 flex items-center justify-between text-xs text-bordeaux-700/70">
+                    <span>🎶 Ambiance musicale active</span>
+                    <button onclick="toggleAudio()" class="underline hover:text-bordeaux-900 font-medium cursor-pointer">Play / Pause</button>
+                </div>
+            </div>
+
+            <div class="bg-cream-50/95 rounded-[2rem] p-6 shadow-md border border-poudre-200 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-2.5">
+                            <div class="w-10 h-10 rounded-full bg-poudre-500 text-white flex items-center justify-center text-lg shadow-xs">📸</div>
+                            <div>
+                                <h3 class="font-serif text-xl font-bold text-bordeaux-800">Coin Souvenirs</h3>
+                                <p class="text-xs text-bordeaux-700/70">Nos captures Snapchat & petits mots</p>
+                            </div>
+                        </div>
+                        <button onclick="openMemoryModal()" class="px-3 py-1.5 rounded-full bg-poudre-100 hover:bg-poudre-200 text-bordeaux-700 text-xs font-semibold transition-colors cursor-pointer">+ Ajouter</button>
+                    </div>
+                    <div id="memories-chat" class="space-y-4 max-h-[26rem] overflow-y-auto p-3 rounded-2xl bg-poudre-100/40 border border-poudre-200/60"></div>
+                </div>
+                <div class="mt-4 pt-3 border-t border-poudre-200/70 flex items-center justify-between text-xs text-bordeaux-700/70">
+                    <span id="memories-count-label">10 souvenirs enregistrés</span>
+                    <span>Mya & Layan ❤️</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center pt-4 flex flex-wrap items-center justify-center gap-4 text-xs text-bordeaux-700/60">
+            <span>💾 Progression sauvegardée automatiquement</span><span>•</span>
+            <button onclick="openResetModal()" class="underline hover:text-bordeaux-800 transition-colors cursor-pointer">Réinitialiser la progression</button>
+        </div>
+    </section>
+
+    <!-- ÉCRAN 5 : CADENAS -->
+    <section id="screen-cipher" class="hidden max-w-4xl mx-auto px-4 sm:px-6 py-8 pb-20">
+        <div class="bg-cream-50/95 rounded-[2rem] p-6 sm:p-10 shadow-xl border border-gold-400/50">
+            <div class="text-center mb-6">
+                <span class="text-3xl">🔐❤️</span>
+                <h2 class="font-serif text-3xl font-bold text-bordeaux-800 mt-2">Le Cadenas Cœur</h2>
+                <p class="font-soft text-sm sm:text-base text-bordeaux-700/85 max-w-xl mx-auto mt-1">Associe chaque numéro gagné à sa lettre pour révéler le message secret !</p>
+            </div>
+            <div class="bg-poudre-100/70 rounded-2xl p-4 mb-6 border border-poudre-200">
+                <p class="text-xs font-bold uppercase tracking-wider text-bordeaux-700 mb-2.5 text-center">Guide de décodage (Numéro → Lettre)</p>
+                <div id="cipher-guide" class="grid grid-cols-6 sm:grid-cols-9 md:grid-cols-13 gap-1.5 text-center text-xs font-mono"></div>
+            </div>
+            <div id="cipher-words-container" class="flex flex-wrap gap-x-5 gap-y-4 justify-center p-4 sm:p-6 rounded-2xl bg-white border border-poudre-200 mb-6"></div>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+                <button onclick="checkCipherProgress()" class="px-6 py-3 rounded-2xl bg-bordeaux-700 hover:bg-bordeaux-800 text-white font-semibold text-sm shadow-md transition-all cursor-pointer">Vérifier mes lettres ✨</button>
+                <button id="auto-fill-hint-btn" onclick="fillUnlockedHint()" class="px-5 py-3 rounded-2xl bg-poudre-100 hover:bg-poudre-200 text-bordeaux-700 font-medium text-sm transition-all cursor-pointer">Aide : Remplir une lettre débloquée 💡</button>
+            </div>
+            <div id="final-unlock-banner" class="hidden mt-8 p-6 rounded-2xl bg-gradient-to-r from-poudre-200 via-gold-300/50 to-poudre-200 border-2 border-gold-400 text-center">
+                <p class="font-serif italic text-lg sm:text-xl text-bordeaux-900 font-semibold mb-4">« Bravo ma chérie, je suis fière de toi. Sache que je t’aime de toute mon âme. Tu peux enfin accéder à la surprise finale, profite bien. »</p>
+                <button onclick="navigateTo('final')" class="px-8 py-4 rounded-full bg-gradient-to-r from-bordeaux-700 via-red-600 to-poudre-500 text-white font-bold text-base sm:text-lg shadow-xl hover:scale-105 active:scale-95 transition-all animate-heart-pulse cursor-pointer">Ouvrir ma Surprise Finale ❤️</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ÉCRAN 6 : JEU -->
+    <section id="screen-game" class="hidden max-w-4xl mx-auto px-4 sm:px-6 py-6 pb-20">
+        <div id="game-wrapper" class="bg-cream-50/95 rounded-[2rem] p-5 sm:p-8 shadow-xl border border-poudre-200"></div>
+    </section>
+
+    <!-- ÉCRAN 7 : FINAL -->
+    <section id="screen-final" class="hidden max-w-3xl mx-auto px-4 sm:px-6 py-10 pb-24">
+        <div class="bg-[#FFFDF9] rounded-[2rem] p-7 sm:p-14 shadow-[0_20px_60px_-15px_rgba(114,25,51,0.25)] border-2 border-gold-400/60 relative">
+            <div class="text-center mb-10">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-poudre-100 border border-poudre-300 text-bordeaux-700 text-xs font-semibold tracking-widest uppercase mb-4">
+                    <span>16 Mars 2026</span><span>•</span><span>16 Novembre 2026</span>
+                </div>
+                <h1 class="font-serif text-3xl sm:text-5xl font-bold text-bordeaux-800">Pour Toi, Mon Amour ❤️</h1>
+                <div class="w-24 h-0.5 bg-gradient-to-r from-transparent via-gold-500 to-transparent mx-auto mt-5"></div>
+            </div>
+            <article class="font-soft text-bordeaux-900 text-base sm:text-lg leading-[1.9] space-y-6 text-left">
+                <p class="font-serif italic text-2xl text-bordeaux-800">Mon amour,</p>
+                <p>Aujourd’hui, cela fait exactement 8 mois que nous sommes ensemble. 8 mois depuis ce fameux 16 mars 2026, une date qui, sans que je le sache à ce moment-là, allait prendre une place aussi importante dans ma vie. Huit mois, ça peut paraître peu pour certaines personnes, mais quand je regarde tout ce qu’on a déjà partagé, tout ce qu’on a appris l’un de l’autre, tous les moments qu’on a vécus et surtout tout ce que tu as changé en moi, je me rends compte à quel point ces huit mois représentent énormément. Et si je pouvais revenir en arrière, à ce fameux jour où notre histoire a commencé, je le referais sans hésiter, parce que parmi toutes les choses que la vie a pu mettre sur mon chemin, te rencontrer restera toujours l’une des plus belles.</p>
+                <p>Je ne sais même pas par où commencer pour réussir à t’expliquer ce que je ressens. J’ai tellement de choses à te dire que j’ai presque l’impression qu’aucun texte ne sera suffisamment long pour contenir tout ce que j’ai dans le cœur. Mais aujourd’hui, j’ai envie de prendre le temps de poser mes pensées, de revenir sur nous, sur notre histoire, et surtout sur la fille extraordinaire qui partage ma vie depuis maintenant huit mois. Je veux que tu puisses relire ce message autant de fois que tu le souhaites et que tu te rappelles à quel point tu comptes pour moi, même dans les moments où tu pourrais en douter.</p>
+                <p>Parfois, je me surprends à repenser à nos premiers échanges, à cette période où nous apprenions encore à nous connaître, où chaque nouvelle conversation nous permettait de découvrir un petit morceau de l’autre. C’est assez fou de se dire qu’au milieu de toutes les personnes que nous aurions pu rencontrer, c’est finalement toi et moi qui avons fini par construire quelque chose d’aussi précieux. Au départ, je ne pouvais certainement pas imaginer tout ce qui nous attendait. Je ne savais pas encore que j’allais autant m’attacher à ta façon de parler, à ton caractère, à tes petites habitudes, à tes expressions, à tes histoires et même à ces petits détails que tu ne remarques probablement pas toi-même. Et pourtant, aujourd’hui, ce sont précisément toutes ces choses qui font que je ne voudrais échanger ta place contre celle de personne.</p>
+                <p>Ce que j’aime dans notre histoire, c’est qu’elle ne se résume pas simplement à une date ou à un nombre de mois. Elle est composée de centaines de petits instants qui, mis bout à bout, ont construit quelque chose d’immense à mes yeux. Nos discussions qui partent dans tous les sens, nos délires que personne d’autre ne pourrait comprendre, nos moments de tendresse, nos confidences, nos conversations qui durent bien plus longtemps que prévu et tous ces petits moments où je me rends compte que je pourrais parler avec toi pendant des heures sans jamais me lasser. Même les journées les plus ordinaires deviennent différentes lorsque tu en fais partie. Tu as cette capacité de rendre les choses plus belles sans même avoir besoin de faire quelque chose d’extraordinaire. Ta simple présence dans ma vie suffit parfois à changer complètement ma journée. Et je crois que c’est justement ça qui me touche le plus chez toi. Tu n’es pas seulement la personne que j’aime, tu es aussi celle avec qui je peux être moi-même sans avoir besoin de réfléchir à chaque mot ou de prétendre être quelqu’un d’autre. Avec toi, je peux rire pour absolument rien, raconter les choses les plus insignifiantes de ma journée, parler de mes inquiétudes, partager mes pensées les plus personnelles ou simplement rester dans une conversation sans sujet particulier. J’aime savoir que je peux venir te parler après une longue journée et retrouver cette personne qui arrive à me faire oublier le reste pendant quelques instants. Tu es devenue une partie tellement importante de mon quotidien que j’ai parfois du mal à réaliser à quel point ta présence est précieuse.</p>
+                <p>Je voudrais aussi que tu comprennes que je ne t’aime pas uniquement pour les moments où tout va bien, lorsque nous sommes heureux et que tout semble facile. Je t’aime aussi pour ta personnalité entière, avec tes qualités, tes défauts, tes petites manies, tes moments de doute, tes humeurs et toutes ces facettes qui font de toi la personne que tu es. Je ne cherche pas une fille parfaite, je veux simplement toi. Celle qui me fait rire, celle qui peut me raconter quelque chose pendant des heures, celle qui a ses propres opinions, ses propres rêves, ses propres envies et sa propre façon de voir le monde. Je veux continuer à découvrir chaque partie de ta personnalité, même celles que je ne connais pas encore aujourd’hui.</p>
+                <p>Si seulement tu pouvais te voir de la manière dont je te vois, tu comprendrais peut-être pourquoi je suis aussi admiratif de toi. Je ne parle pas uniquement de ta beauté, même si je pourrais passer un temps fou à te dire à quel point je te trouve magnifique. Je parle surtout de tout ce qui se cache derrière ton apparence. Ta façon d’être, ton cœur, ta sensibilité, ta manière de réagir aux choses, ton humour, ta personnalité et cette petite chose qui fait que tu es reconnaissable entre mille à mes yeux. J’aime quand tu es enthousiaste à propos de quelque chose, quand tu me racontes tes journées, quand tu me partages tes pensées ou lorsque tu me fais découvrir des choses qui te passionnent. J’aime également ces petits détails auxquels tu ne prêtes sûrement aucune attention, mais que moi je remarque et que je finis par associer à toi. Tu as tellement de raisons d’être fière de la personne que tu es, et j’espère sincèrement que tu ne laisseras jamais tes moments de doute te faire oublier ta valeur.</p>
+                <p>Je veux également te remercier. Et pas seulement pour les grandes choses, mais pour toutes celles que tu fais naturellement, parfois sans même t’en rendre compte. Merci pour ta patience, pour ton attention, pour le temps que tu m’accordes, pour tes mots lorsque j’en ai besoin et pour tous ces moments où tu arrives à me redonner le sourire. Merci de m’avoir laissé une place dans ton monde et de me permettre d’en découvrir un peu plus chaque jour. Depuis que tu es entrée dans ma vie, j’ai appris beaucoup de choses sur moi-même, sur les sentiments et sur ce que signifie réellement construire une relation avec quelqu’un. Tu m’as apporté une douceur et un bonheur que je ne saurais même pas correctement expliquer. Tu m’as donné envie de partager davantage, de m’ouvrir, de faire des efforts et de devenir une meilleure personne. Et pour tout ça, je ne pourrai jamais assez te remercier.</p>
+                <p>Et si je pouvais faire un seul vœu pour la suite, ce serait de pouvoir continuer à écrire notre histoire avec toi, mois après mois, année après année, en ayant toujours cette même envie de te choisir, de te découvrir et de t’aimer.</p>
+                <p>Je t’aime pour tout ce que tu es, pour tout ce que m’apportes et pour tout ce que nous sommes en train de construire ensemble.</p>
+                <p>Au 16 mars 2026, au 16 novembre 2026, à tous les mois qui suivront et à tous ceux que nous avons encore devant nous.</p>
+                <p class="font-serif font-bold text-bordeaux-700 text-lg sm:text-xl tracking-wide pt-2">POUR NOTRE HISTOIRE, ET POUR TOUT CE QU’IL NOUS RESTE À VIVRE.</p>
+                <p class="font-serif italic text-2xl sm:text-3xl text-bordeaux-800 pt-4">Ton amoureux. ❤️</p>
+            </article>
+            <div class="mt-10 pt-6 border-t border-poudre-200 flex justify-center">
+                <button onclick="navigateTo('hub')" class="px-6 py-2.5 rounded-full bg-poudre-100 hover:bg-poudre-200 text-bordeaux-700 font-medium text-sm transition-colors cursor-pointer">Retourner à l'accueil & nos souvenirs 🏠</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODALES -->
+    <div id="win-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-bordeaux-900/60 backdrop-blur-xs">
+        <div class="bg-cream-50 rounded-[2rem] max-w-md w-full p-7 text-center shadow-2xl border-2 border-gold-400">
+            <div class="text-5xl mb-3">🎉❤️</div>
+            <h3 class="font-serif text-2xl sm:text-3xl font-bold text-bordeaux-800">Bravo mon cœur !</h3>
+            <p id="win-modal-desc" class="font-soft text-sm text-bordeaux-700 mt-2">Tu as réussi ce défi ! Voici tes nouveaux numéros secrets :</p>
+            <div id="win-modal-numbers" class="my-5 p-4 rounded-2xl bg-poudre-100 border border-poudre-300 flex flex-wrap justify-center gap-2 font-mono font-bold text-bordeaux-800 text-base"></div>
+            <button onclick="closeWinModal()" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-bordeaux-700 to-poudre-500 text-white font-semibold shadow-md hover:opacity-95 transition-all cursor-pointer">Ranger dans le Cadenas Cœur 🔐</button>
+        </div>
+    </div>
+
+    <div id="playlist-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-bordeaux-900/50 backdrop-blur-xs">
+        <div class="bg-cream-50 rounded-3xl max-w-md w-full p-6 shadow-2xl border border-poudre-200">
+            <h3 class="font-serif text-xl font-bold text-bordeaux-800 mb-4">Ajouter un son à la Playlist 🎧</h3>
+            <form onsubmit="addSongToPlaylist(event)" class="space-y-3">
+                <input type="text" id="song-title" required placeholder="Titre de la chanson" class="w-full px-4 py-2.5 rounded-xl border border-poudre-300 bg-white text-sm focus:outline-none focus:border-bordeaux-600">
+                <input type="text" id="song-artist" required placeholder="Artiste" class="w-full px-4 py-2.5 rounded-xl border border-poudre-300 bg-white text-sm focus:outline-none focus:border-bordeaux-600">
+                <input type="text" id="song-note" placeholder="Petite note (ex: Notre musique ❤️)" class="w-full px-4 py-2.5 rounded-xl border border-poudre-300 bg-white text-sm focus:outline-none focus:border-bordeaux-600">
+                <div class="flex justify-end gap-2 pt-2">
+                    <button type="button" onclick="closePlaylistModal()" class="px-4 py-2 rounded-xl text-sm text-bordeaux-700 hover:bg-poudre-100 cursor-pointer">Annuler</button>
+                    <button type="submit" class="px-5 py-2 rounded-xl text-sm bg-bordeaux-700 text-white font-semibold cursor-pointer">Ajouter</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="memory-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-bordeaux-900/50 backdrop-blur-xs">
+        <div class="bg-cream-50 rounded-3xl max-w-md w-full p-6 shadow-2xl border border-poudre-200">
+            <h3 class="font-serif text-xl font-bold text-bordeaux-800 mb-4">Ajouter un souvenir Snapchat 📸</h3>
+            <form onsubmit="addMemoryItem(event)" class="space-y-3">
+                <textarea id="mem-note" rows="2" required placeholder="Ton petit mot doux..." class="w-full px-4 py-2.5 rounded-xl border border-poudre-300 bg-white text-sm focus:outline-none focus:border-bordeaux-600"></textarea>
+                <div class="p-2.5 rounded-xl bg-poudre-100/60 border border-dashed border-poudre-300">
+                    <label class="block text-[11px] font-semibold text-bordeaux-800 mb-1">Importer une capture d'écran :</label>
+                    <input type="file" id="mem-image-file" accept="image/*" class="text-xs text-bordeaux-700 file:mr-2 file:py-1 file:px-3 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-bordeaux-700 file:text-white cursor-pointer">
+                </div>
+                <div class="flex justify-end gap-2 pt-2">
+                    <button type="button" onclick="closeMemoryModal()" class="px-4 py-2 rounded-xl text-sm text-bordeaux-700 hover:bg-poudre-100 cursor-pointer">Annuler</button>
+                    <button type="submit" class="px-5 py-2 rounded-xl text-sm bg-bordeaux-700 text-white font-semibold cursor-pointer">Enregistrer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="reset-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-bordeaux-900/50 backdrop-blur-xs">
+        <div class="bg-cream-50 rounded-3xl max-w-sm w-full p-6 text-center shadow-2xl border border-poudre-200">
+            <h3 class="font-serif text-xl font-bold text-bordeaux-800 mb-2">Recommencer l'aventure ?</h3>
+            <p class="text-xs text-bordeaux-700/80 mb-5">Cela remettra à zéro les défis et les numéros débloqués.</p>
+            <div class="flex justify-center gap-3">
+                <button onclick="closeResetModal()" class="px-4 py-2 rounded-xl text-sm bg-poudre-100 text-bordeaux-800 cursor-pointer">Annuler</button>
+                <button onclick="confirmFullReset()" class="px-4 py-2 rounded-xl text-sm bg-red-600 text-white font-semibold cursor-pointer">Réinitialiser</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 translate-y-3 transition-all duration-300">
+        <div class="bg-bordeaux-900 text-cream-50 px-5 py-2.5 rounded-full text-xs sm:text-sm font-medium shadow-xl border border-gold-400/40 flex items-center gap-2">
+            <span>❤️</span>
+            <span id="toast-msg">Message</span>
+        </div>
+    </div>
+
+    <!-- Lien vers le fichier JavaScript externe -->
+    <script src="script.js"></script>
+</body>
+</html>
